@@ -19,7 +19,7 @@ import tempfile
 import unittest
 
 from transformers import AutoTokenizer, PegasusConfig, is_tf_available
-from transformers.testing_utils import require_sentencepiece, require_tf, require_tokenizers, slow, tooslow
+from transformers.testing_utils import require_sentencepiece, require_tf, require_tokenizers, slow
 from transformers.utils import cached_property
 
 from ...test_configuration_common import ConfigTester
@@ -237,10 +237,6 @@ class TFPegasusModelTest(TFModelTesterMixin, PipelineTesterMixin, unittest.TestC
         # Compile extended model
         extended_model = tf.keras.Model(inputs=[input_ids], outputs=[outputs])
         extended_model.compile(optimizer=optimizer, loss=loss, metrics=[metric])
-
-    @tooslow
-    def test_saved_model_creation(self):
-        pass
 
 
 @require_sentencepiece
